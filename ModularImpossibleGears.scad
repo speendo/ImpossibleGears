@@ -14,9 +14,10 @@ shaft=5;
 pAng=20;
 ang=0;
 
-hOffset=0.5;
-vMOffset=1;
+hOffset=1;
+vMOffset=0.4;
 vSOffset=0.2;
+vGearOffset=1;
 vOuterThickness=1;
 
 gearSocketRadius=1;
@@ -48,8 +49,8 @@ module standardBezel(i, iMax) {
 				}
 				if (i < iMax) {
 					difference() {
-						makeShaft(i+1, layerHeight-hOffset+1, do(mod, sTeeth)+2*vMOffset, zOffset=hOffset);
-						makeShaft(i+1, hOffset, shaft+vMOffset+2*gearSocketRadius, zOffset=hOffset);
+						makeShaft(i+1, layerHeight-hOffset+1, do(mod, sTeeth)+2*vGearOffset, zOffset=hOffset);
+						makeShaft(i+1, hOffset, shaft+vGearOffset+2*gearSocketRadius, zOffset=hOffset);
 					}
 				}
 				if (i > 0) {
@@ -69,7 +70,22 @@ module standardBezel(i, iMax) {
 			makeShaft(i+4.5,2*layerHeight, shaft);
 		} else if (i == iMax - 1) { // on pre ultimate layer
 			// Main Shaft
-			makeShaft(i+1,2*layerHeight, shaft);
+			// This one should hold the gear
+			difference() {
+				union() {
+					makeShaft(i+1,2*layerHeight, shaft);
+					rotate([0,0,(i+1)*60]) {
+						translate([centerOffset,0,2*layerHeight]) {
+							cylinder(d1=shaft+4*vMOffset, d2=shaft, h=2*hOffset);
+						}
+					}
+				}
+				rotate([0,0,(i+1)*60]) {
+					translate([-(shaft+4*vMOffset)/2+centerOffset-1, -2.5*vMOffset, layerHeight]) {
+						cube([shaft+4*vMOffset+2, 5*vMOffset, layerHeight+2*hOffset+1]);
+					}
+				}
+			}
 			// Connection Shafts
 			makeShaft(i+3,2*layerHeight, shaft);
 			makeShaft(i+4.5,2*layerHeight, shaft);
