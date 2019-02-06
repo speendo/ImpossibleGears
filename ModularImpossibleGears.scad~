@@ -154,12 +154,15 @@ module standardBezel(i, iMax) {
 	} else if (i == iMax - 1) { // on pre ultimate layer
 		// Main Shaft
 		// This one should hold the gear
-		difference() {
+!		difference() {
 			union() {
 				makeShaft(i+1,2*layerHeight, shaft);
 				rotate([0,0,(i+1)*60]) {
 					translate([centerOffset,0,2*layerHeight]) {
-						cylinder(d1=shaft+4*vMOffset, d2=shaft, h=2*hOffset);
+						intersection() {
+							cylinder(d1=shaft+4*vMOffset, d2=shaft, h=2*hOffset);
+								cube([shaft,shaft+4*vMOffset,2*hOffset], center=true);
+						}
 					}
 				}
 			}
@@ -206,7 +209,7 @@ module rTransmission(top=false) {
 			if (top) {
 				topGears();
 				translate([dr(mod, bTeeth)/2-handleOffset, 0, -handleHeight]) {
-#					topGearsHandle();
+					topGearsHandle();
 				}
 			} else {
 				transmission();

@@ -159,7 +159,10 @@ module standardBezel(i, iMax) {
 				makeShaft(i+1,2*layerHeight, shaft);
 				rotate([0,0,(i+1)*60]) {
 					translate([centerOffset,0,2*layerHeight]) {
-						cylinder(d1=shaft+4*vMOffset, d2=shaft, h=2*hOffset);
+						intersection() {
+							cylinder(d1=shaft+4*vMOffset, d2=shaft, h=2*hOffset);
+								cube([shaft,shaft+4*vMOffset,2*hOffset], center=true);
+						}
 					}
 				}
 			}
