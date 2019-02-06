@@ -26,13 +26,13 @@ bTeeth=60;
 sTeeth=10;
 
 // Modulus
-mod=1;
+mod=0.650; // [0:0.001:10]
 
 // Gear Width
-tHeight=4; // [0:0.01:50]
+tHeight=3; // [0:0.01:50]
 
 // Shaft Diameter
-shaft=5; // [0:0.01:50]
+shaft=2.65; // [0:0.01:50]
 
 // Pressure Angle (Standard is 20)
 pAng=20; // [0:0.01:90]
@@ -43,13 +43,13 @@ ang=0; // [-90:0.1:90]
 /* [Top Gear Parameter] */
 
 // Offset from the Outer Border of the Gear
-handleOffset = 5;
+handleOffset = 4;
 
 // Diameter of the Handle
-handleDiameter = 3;
+handleDiameter = 2.65;
 
 // Handle Height
-handleHeight = 20;
+handleHeight = 10;
 
 /* [Material Parameters] */
 
@@ -57,10 +57,10 @@ handleHeight = 20;
 hOffset=1; // [0:0.01:50]
 
 // Vertical Offset on Moving Parts (e.g. Gear Shafts)
-vMOffset=0.4; // [0:0.01:50]
+vMOffset=0.25; // [0:0.01:50]
 
 // Vertical Offset on Static Parts (e.g. Connection Shafts)
-vSOffset=0.2; // [0:0.01:50]
+vSOffset=0.15; // [0:0.01:50]
 
 // Vertical Offset between Gear and Bezel
 vGearOffset=1; // [0:0.01:50]
@@ -69,7 +69,7 @@ vGearOffset=1; // [0:0.01:50]
 vOuterThickness=1; // [0:0.01:50]
 
 // Radius of the Socket where the Gear Rests
-gearSocketRadius=1;  // [0:0.01:50]
+gearSocketRadius=0.5;  // [0:0.01:50]
 
 /*[Hidden]*/
 
@@ -128,7 +128,7 @@ module standardBezel(i, iMax) {
 		}
 		union() {
 			if (i > 0) {
-				makeShaft(i,layerHeight+2,do(mod, bTeeth)+2*vMOffset,zOffset=-1);
+				makeShaft(i,layerHeight+2,do(mod, bTeeth)+2*vGearOffset,zOffset=-1);
 			}
 			if (i < iMax) {
 				difference() {
