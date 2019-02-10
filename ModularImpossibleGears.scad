@@ -26,7 +26,7 @@ bTeeth=60;
 sTeeth=10;
 
 // Modulus
-mod=0.650; // [0:0.001:10]
+mod=0.600; // [0:0.001:10]
 
 // Gear Width
 tHeight=3; // [0:0.01:50]
