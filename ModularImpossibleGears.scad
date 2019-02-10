@@ -42,8 +42,11 @@ ang=0; // [-90:0.1:90]
 
 /* [Top Gear Parameter] */
 
-// Offset from the Outer Border of the Gear
+// Handle Offset from the Outer Border of the Gear
 handleOffset = 4;
+
+// Handle Position (Rotation)
+handleRotate = 36; // [0:0.1:360]
 
 // Diameter of the Handle
 handleDiameter = 2.65;
@@ -208,8 +211,10 @@ module rTransmission(top=false) {
 		rotate([180,0,0]) {
 			if (top) {
 				topGears();
-				translate([dr(mod, bTeeth)/2-handleOffset, 0, -handleHeight]) {
-					topGearsHandle();
+				rotate([0,0,handleRotate]) {
+					translate([dr(mod, bTeeth)/2-handleOffset, 0, -handleHeight]) {
+						topGearsHandle();
+					}
 				}
 			} else {
 				transmission();
@@ -228,9 +233,11 @@ module topGearsHandle() {
 
 module topGears() {
 	difference() {
-		transmission(opt=false);
-		translate([dr(mod, bTeeth)/2-handleOffset,0,-1]) {
-			cylinder(h=tHeight+2, d=handleDiameter-vSOffset);
+		transmission(opt=true);
+		rotate([0,0,handleRotate]) {
+			translate([dr(mod, bTeeth)/2-handleOffset,0,-1]) {
+				cylinder(h=tHeight+2, d=handleDiameter-vSOffset);
+			}
 		}
 	}
 }
