@@ -32,7 +32,7 @@ mod=0.600; // [0:0.001:10]
 tHeight=3; // [0:0.01:50]
 
 // Shaft Diameter
-shaft=3; // [0:0.01:50]
+shaft=2.65; // [0:0.01:50]
 
 // Pressure Angle (Standard is 20)
 pAng=20; // [0:0.01:90]
