@@ -15,7 +15,7 @@ viewLayerNumberFrom=0;
 viewLayerNumberTo=0;
 
 // Resolution
-$fn = 50; // [0:1:200]
+$fn = 60; // [0:1:200]
 
 /*[Gear Parameters]*/
 
@@ -26,13 +26,13 @@ bTeeth=60;
 sTeeth=10;
 
 // Modulus
-mod=0.600; // [0:0.001:10]
+mod=1.000; // [0:0.001:10]
 
 // Gear Width
 tHeight=3; // [0:0.01:50]
 
 // Shaft Diameter
-shaft=3; // [0:0.01:50]
+shaft=5; // [0:0.01:50]
 
 // Pressure Angle (Standard is 20)
 pAng=20; // [0:0.01:90]
@@ -43,13 +43,13 @@ ang=0; // [-90:0.1:90]
 /* [Top Gear Parameter] */
 
 // Handle Offset from the Outer Border of the Gear
-handleOffset = 4;
+handleOffset = 5;
 
 // Handle Position (Rotation)
 handleRotate = 36; // [0:0.1:360]
 
 // Diameter of the Handle
-handleDiameter = 2.65;
+handleDiameter = 5;
 
 // Handle Height
 handleHeight = 10;
@@ -60,10 +60,10 @@ handleHeight = 10;
 hOffset=1; // [0:0.01:50]
 
 // Vertical Offset on Moving Parts (e.g. Gear Shafts)
-vMOffset=0.25; // [0:0.01:50]
+vMOffset=0.20; // [0:0.01:50]
 
 // Vertical Offset on Static Parts (e.g. Connection Shafts)
-vSOffset=0.15; // [0:0.01:50]
+vSOffset=0.10; // [0:0.01:50]
 
 // Vertical Offset between Gear and Bezel
 vGearOffset=1; // [0:0.01:50]
@@ -72,7 +72,7 @@ vGearOffset=1; // [0:0.01:50]
 vOuterThickness=1; // [0:0.01:50]
 
 // Radius of the Socket where the Gear Rests
-gearSocketRadius=0.5;  // [0:0.01:50]
+gearSocketRadius=1;  // [0:0.01:50]
 
 /*[Hidden]*/
 
