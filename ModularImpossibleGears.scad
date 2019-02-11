@@ -141,10 +141,10 @@ module standardBezel(i, iMax) {
 			}
 			if (i > 0) {
 				// Main Shaft Hole
-				makeShaft(i-1, layerHeight+2, shaft+vSOffset, zOffset=-1);
+				makeStackShaftHole(i-1);
 				// Connection Shaft Holes
-				makeShaft(i+2, layerHeight+2, shaft+vSOffset, zOffset=-1);
-				makeShaft(i+3.5, layerHeight+2, shaft+vSOffset, zOffset=-1);
+				makeStackShaftHole(i+2);
+				makeStackShaftHole(i+3.5);
 			}
 		}
 	}
@@ -236,7 +236,7 @@ module topGears() {
 		transmission(opt=true);
 		rotate([0,0,handleRotate]) {
 			translate([dr(mod, bTeeth)/2-handleOffset,0,-1]) {
-				cylinder(h=tHeight+2, d=handleDiameter-vSOffset);
+				cylinder(h=tHeight+2, d=handleDiameter);
 			}
 		}
 	}
@@ -251,6 +251,10 @@ module transmission(opt=true) {
 module standardGear(teeth, height, opt=true) {
 	hole = shaft + 2 * vMOffset;
 	stirnrad(modul=mod, zahnzahl=teeth, breite=height, bohrung=hole, eingriffswinkel=pAng, schraegungswinkel=ang, optimiert=opt);
+}
+
+module makeStackShaftHole(i) {
+	makeShaft(i, layerHeight+2, shaft+2*vSOffset, zOffset=-1);
 }
 
 module makeShaft(i, h, d, zOffset=0) {
