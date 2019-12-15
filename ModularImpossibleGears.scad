@@ -285,7 +285,6 @@ module makeShaft(i, h, d, zOffset=0) {
 module makeShaftSlice(i, h, d, zOffset=0, angle, rotation) {
 	rotate([0,0,i*60]) {
 		translate([centerOffset,0,zOffset]) {
-			echo(rotation);
 			pie(d/2, angle, h, rotation);
 		}
 	}
