@@ -1,0 +1,33 @@
+{
+    "parameterSets": {
+        "Optimized": {
+            "$fa": "0.5",
+            "$fn": "0",
+            "$fs": "0.1",
+            "ang": "0",
+            "bTeeth": "50",
+            "cutAwaySliceAngle": "45",
+            "cutAwaySliceDirectionAngle": "-82.5",
+            "gearSocketRadius": "1",
+            "hOffset": "1",
+            "handleDiameter": "5",
+            "handleHeight": "10",
+            "handleOffset": "5",
+            "handleRotate": "36",
+            "layerNumber": "10",
+            "mod": "1",
+            "pAng": "20",
+            "part": "Standard Layer",
+            "sTeeth": "10",
+            "shaft": "4",
+            "tHeight": "1.5",
+            "vGearOffset": "0.5",
+            "vMOffset": "0.3",
+            "vOuterThickness": "1.2",
+            "vSOffset": "0.1",
+            "viewLayerNumberFrom": "2",
+            "viewLayerNumberTo": "2"
+        }
+    },
+    "fileFormatVersion": "1"
+}

@@ -1,4 +1,5 @@
 use <Getriebe.scad>
+use <pie.scad>
 
 /*[General Parameters]*/
 
@@ -14,11 +15,16 @@ viewLayerNumberFrom=0;
 // End Number of Viewed Layers
 viewLayerNumberTo=0;
 
-// Resolution
-$fn = 60; // [0:1:200]
+// Number of Fragments (0 for disabled)
+$fn = 0; // [0:1:200]
+
+// Minimum Angle for a Fragment
+$fa = 24; // [0.01:0.01:50]
+
+// Minimum Size of a Fragment
+$fs = 4; // [0.01:0.01:50]
 
 /*[Gear Parameters]*/
-
 // Big Gear: Number of Teeth
 bTeeth=60;
 
@@ -73,6 +79,14 @@ vOuterThickness=1; // [0:0.01:50]
 
 // Radius of the Socket where the Gear Rests
 gearSocketRadius=1;  // [0:0.01:50]
+
+/* [Advanced Parameters] */
+
+// Eliminate lost pillars in connection with vOuterThicckness
+cutAwaySliceAngle=45; // [0:0.1:180]
+
+// direction of cutAwaySlice
+cutAwaySliceDirectionAngle=-82.5; // [-180:0.1:180]
 
 /*[Hidden]*/
 
@@ -135,7 +149,10 @@ module standardBezel(i, iMax) {
 			}
 			if (i < iMax) {
 				difference() {
-					makeShaft(i+1, layerHeight-hOffset+1, do(mod, sTeeth)+2*vGearOffset, zOffset=hOffset);
+					union() {
+						makeShaft(i+1, layerHeight-hOffset+1, do(mod, sTeeth)+2*vGearOffset, zOffset=hOffset);
+						makeShaftSlice(i+1, layerHeight-hOffset+1, do(mod, bTeeth)+2*vGearOffset, hOffset, cutAwaySliceAngle,cutAwaySliceDirectionAngle);
+					}
 					makeShaft(i+1, hOffset, shaft+vGearOffset+2*gearSocketRadius, zOffset=hOffset);
 				}
 			}
@@ -164,7 +181,7 @@ module standardBezel(i, iMax) {
 					translate([centerOffset,0,2*layerHeight]) {
 						intersection() {
 							cylinder(d1=shaft+4*vMOffset, d2=shaft, h=2*hOffset);
-								cube([shaft,shaft+4*vMOffset,2*hOffset], center=true);
+							cube([shaft,shaft+4*vMOffset,2*hOffset], center=true);
 						}
 					}
 				}
@@ -261,6 +278,15 @@ module makeShaft(i, h, d, zOffset=0) {
 	rotate([0,0,i*60]) {
 		translate([centerOffset,0,zOffset]) {
 			cylinder(h=h, d=d);
+		}
+	}
+}
+
+module makeShaftSlice(i, h, d, zOffset=0, angle, rotation) {
+	rotate([0,0,i*60]) {
+		translate([centerOffset,0,zOffset]) {
+			echo(rotation);
+			pie(d/2, angle, h, rotation);
 		}
 	}
 }
